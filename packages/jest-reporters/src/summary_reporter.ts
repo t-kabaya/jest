@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Config} from '@jest/types';
-import {AggregatedResult, SnapshotSummary} from '@jest/test-result';
+import { Config } from '@jest/types';
+import { AggregatedResult, SnapshotSummary } from '@jest/test-result';
 import chalk from 'chalk';
-import {testPathPatternToRegExp} from 'jest-util';
-import {Context, ReporterOnStartOptions} from './types';
+import { testPathPatternToRegExp } from 'jest-util';
+import { Context, ReporterOnStartOptions } from './types';
 import BaseReporter from './base_reporter';
-import {getSummary} from './utils';
+import { getSummary } from './utils';
 import getResultHeader from './get_result_header';
 import getSnapshotSummary from './get_snapshot_summary';
 
@@ -80,7 +80,7 @@ export default class SummaryReporter extends BaseReporter {
   }
 
   onRunComplete(contexts: Set<Context>, aggregatedResults: AggregatedResult) {
-    const {numTotalTestSuites, testResults, wasInterrupted} = aggregatedResults;
+    const { numTotalTestSuites, testResults, wasInterrupted } = aggregatedResults;
     if (numTotalTestSuites) {
       const lastResult = testResults[testResults.length - 1];
       // Print a newline if the last test did not fail to line up newlines
@@ -101,6 +101,7 @@ export default class SummaryReporter extends BaseReporter {
       );
 
       if (numTotalTestSuites) {
+        // ここでテスト結果のサマリーを取得している。
         let message = getSummary(aggregatedResults, {
           estimatedTime: this._estimatedTime,
         });
@@ -176,13 +177,13 @@ export default class SummaryReporter extends BaseReporter {
     ) {
       this.log(chalk.bold('Summary of all failing tests'));
       aggregatedResults.testResults.forEach(testResult => {
-        const {failureMessage} = testResult;
+        const { failureMessage } = testResult;
         if (failureMessage) {
           this._write(
             getResultHeader(testResult, globalConfig) +
-              '\n' +
-              failureMessage +
-              '\n',
+            '\n' +
+            failureMessage +
+            '\n',
           );
         }
       });

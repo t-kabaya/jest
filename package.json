@@ -96,7 +96,8 @@
     "test-leak": "yarn jest -i --detectLeaks jest-mock jest-diff jest-repl",
     "test": "yarn lint && yarn jest",
     "watch": "yarn build && node ./scripts/watch.js",
-    "watch:ts": "yarn build:ts --watch"
+    "watch:ts": "yarn build:ts --watch",
+    "sandbox": "node ./packages/jest-cli/bin/jest.js sandbox.test.js"
   },
   "workspaces": {
     "packages": [

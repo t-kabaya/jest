@@ -1,0 +1,5 @@
+packages/expect/src
+が、マッチャーの本体のようだ。
+
+toBeFalsy
+という関数などが中に記述されている。
